@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites>
+  <testsuite id="0" name="E:\workspace\My projects\serious-review\tests\js\debounce.spec.js" errors="0" package="E:\workspace\My projects\serious-review\tests\js\debounce.spec.js" hostname="localhost" tests="1" failures="0" time="1.296" timestamp="2019-11-07T03:15:09">
+    <properties>
+    </properties>
+    <testcase classname="adds 1 + 2 to equal 3" name="adds 1 + 2 to equal 3" time="0">
+    </testcase>
+    <system-out/>
+    <system-err/>
+  </testsuite>
+</testsuites>

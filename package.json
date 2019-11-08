@@ -1,0 +1,31 @@
+{
+  "name": "serious-review",
+  "version": "1.0.0",
+  "description": "个人积累和总结",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SunnyXiao/serious-review.git"
+  },
+  "keywords": [
+    "前端知识积累"
+  ],
+  "author": "Luisa Xiao",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/SunnyXiao/serious-review/issues"
+  },
+  "homepage": "https://github.com/SunnyXiao/serious-review#readme",
+  "devDependencies": {
+    "jest": "^24.9.0",
+    "jest-junit-reporter": "^1.1.0"
+  },
+  "dependencies": {
+    "@babel/core": "^7.7.0",
+    "@babel/preset-env": "^7.7.1",
+    "babel-jest": "^24.9.0"
+  }
+}
