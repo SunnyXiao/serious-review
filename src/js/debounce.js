@@ -12,7 +12,8 @@ export default function debounce(func, wait, immediate) {
   var timeout, args, context, timestamp, result;
 
   var later = function() {
-    // 当wait指定的时间间隔期间多次调用_.debounce返回的函数，则会不断更新timestamp的值，导致last < wait && last >= 0一直为true，从而不断启动新的计时器延时执行func
+    // 当wait指定的时间间隔期间多次调用_.debounce返回的函数，则会不断更新timestamp的值，
+    //导致last < wait && last >= 0一直为true，从而不断启动新的计时器延时执行func
     var last = +new Date() - timestamp;
 
     if (last < wait && last >= 0) {
