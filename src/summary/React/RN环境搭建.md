@@ -62,6 +62,8 @@ react-native init RnDemo
 
 一切前期工作准备妥当，这个时候，我们只需要在命令行输入下面命令，就可以看到我们的项目了，美滋滋
 
-```npm 
+```
+cd RnDemo
+
 react-native run-android
 ```
