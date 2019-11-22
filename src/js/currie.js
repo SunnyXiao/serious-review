@@ -1,6 +1,12 @@
 /**
  * @description: 函数柯里化
  * @author: Luisa.Xiao
+ * @example: function sum(a, b, c) {console.log(a + b + c);}
+ * const fn = curry(sum)
+ * fn(1, 2, 3); // 6
+ * fn(1, 2)(3); // 6
+ * fn(1)(2, 3); // 6
+ * fn(1)(2)(3); // 6
  */
 export default function curry(fn, ...arg) {
   let all = arg || [],

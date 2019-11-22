@@ -33,6 +33,8 @@ Function.prototype.apply = function(thisArg, rest) {
 /**
  * 
  * @description: 模拟new 操作符
+ * 通过new创建对象和通过字面量创建的区别：
+ * 字面量创建对象不会调用Object构造函数，简介且性能更好；
  */
 function mockNew(ctor){
   if(typeof ctor !== 'function') throw 'mockNew function the first param must be a function';
