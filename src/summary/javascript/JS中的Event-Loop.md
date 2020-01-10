@@ -124,3 +124,60 @@ await做了什么
 6. 第二轮循环开始，这个时候就会跳回async1函数中执行后面的代码，然后遇到了同步任务 console 语句，直接输出 async1 end。这样第二轮的循环就结束了。（也可以理解为被加入到script任务队列中，所以会先与setTimeout队列执行）
 
 7. 第二轮循环依旧从宏任务队列开始。此时宏任务中只有一个 setTimeout，取出直接输出即可，至此整个流程结束。
+
+
+变式一
+------
+
+在第一个变式中我将async2中的函数也变成了Promise函数，代码如下：
+
+	async function async1() {
+	    console.log('async1 start');
+	    await async2();
+	    console.log('async1 end');
+	}
+	async function async2() {
+	    //async2做出如下更改：
+	    new Promise(function(resolve) {
+	    console.log('promise1');
+	    resolve();
+	}).then(function() {
+	    console.log('promise2');
+	    });
+	}
+	console.log('script start');
+	
+	setTimeout(function() {
+	    console.log('setTimeout');
+	}, 0)
+	async1();
+	
+	new Promise(function(resolve) {
+	    console.log('promise3');
+	    resolve();
+	}).then(function() {
+	    console.log('promise4');
+	});
+	
+	console.log('script end');
+
+
+结果：
+
+	script start
+	
+	async1 start
+	
+	promise1
+	
+	promise3
+	
+	script end
+	
+	promise2
+	
+	async1 end
+	
+	promise4
+	
+	setTimeout

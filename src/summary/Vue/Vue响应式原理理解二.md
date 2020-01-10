@@ -115,9 +115,50 @@
 ### Vue3的数据响应式原理
 Vue3的响应式原理是用了proxy的方式来实现，优化了Vue2响应式存在的几个问题
 
+- defineProperty只能监听某个属性，不能对全对象监听
+- 所以可以省去for in循环，提高效率
+- 可以监听数组，不用再去单独的对数组做特异性操作
+
+
+eg： 用proxy做类型验证
+
+	function person(name.age){
+		this.age = age
+		this.name = name
+		return new Proxy(this,{
+			get: function(target,key){
+				return target[key]
+			},
+			set: function(target,key,value){
+				validate(key,value)
+			}
+		})
+	}
+
+
 
 ### Diff算法和virtual dom
 virtual dom： AST语法树
+
+#### virtual DOM和真实DOM的区别？
+virtual DOM是将真实的DOM的数据抽取出来，以对象的形式模拟树形结构。比如dom是这样的：
+
+	<div>
+	    <p>123</p>
+	</div>
+
+对应的virtual DOM（伪代码）：
+
+	var Vnode = {
+	    tag: 'div',
+	    children: [
+	        { tag: 'p', text: '123' }
+	    ]
+	};
+
+
+Vue通过数据绑定来修改视图，当某个数据被修改的时候，set方法会让闭包中的Dep调用notify通知所有订阅者Watcher，Watcher通过get方法执行vm._update(vm._render(), hydrating)。
+
 ### Vue指令编写
 
 ```
