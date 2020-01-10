@@ -138,7 +138,22 @@ eg： 用proxy做类型验证
 
 
 ### Diff算法和virtual dom
-virtual dom： AST语法树
+- virtual dom： 
+- render出 AST语法树：
+
+	源码流程：<code> $mount()->compileToFunctions()->compile()->baseCompile() </code>,真正的编译过程都是在这个baseCompile()里面执行，执行步骤可以分为三个过程
+	
+	1. 解析模版字符串生成AST
+	
+		<code>	const ast = parse(template.trim(), options) </code>
+
+	2. 优化语法树
+	
+		<code>optimize(ast, options)</code>
+
+	3. 生成代码
+	
+	   	<code>const code = generate(ast, options)</code>
 
 #### virtual DOM和真实DOM的区别？
 virtual DOM是将真实的DOM的数据抽取出来，以对象的形式模拟树形结构。比如dom是这样的：
