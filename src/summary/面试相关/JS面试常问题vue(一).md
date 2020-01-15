@@ -35,6 +35,11 @@ Vue中不同层级的组件共享数据有哪些方案？
 
 Vue中你如何实现图片懒加载？
 ----
+#### 总览
+![Image](https://raw.githubusercontent.com/SunnyXiao/serious-review/master/src/summary/%E9%9D%A2%E8%AF%95%E7%9B%B8%E5%85%B3/image/39081915-805e8f90-457c-11e8-8028-edd54252b6ce.png)
+
+
+[Intersection Observer API - Web API 接口 | MDN](https://developer.mozilla.org/zh-CN/docs/Web/API/Intersection_Observer_API)
 
 
 

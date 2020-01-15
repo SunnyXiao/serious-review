@@ -23,7 +23,7 @@
 简单来说，就是当我们创建一个函数的时候，系统就会自动分配一个 `prototype`属性，可以用来存储可以让所有实例共享的属性和方法
 
 用一张图来表示就更加清晰了：
-![原型](https://raw.githubusercontent.com/ltadpoles/web-document/master/JavaScript/images/%E5%8E%9F%E5%9E%8B%E5%9B%BE%E7%A4%BA.jpg)
+![原型](https://raw.githubusercontent.com/SunnyXiao/serious-review/master/src/summary/javascript/images/%E5%8E%9F%E5%9E%8B%E5%9B%BE%E7%A4%BA.jpg)
 
 图解：
 - 每一个构造函数都拥有一个 `prototype` 属性，这个属性指向一个对象，也就是原型对象
@@ -95,7 +95,7 @@ p.name // undefined
 
 一图胜过千言万语
 
-![重写原型链](https://raw.githubusercontent.com/ltadpoles/web-document/master/JavaScript/images/%E9%87%8D%E5%86%99%E5%8E%9F%E5%9E%8B%E5%AF%B9%E8%B1%A1.jpg)
+![重写原型链](https://raw.githubusercontent.com/SunnyXiao/serious-review/master/src/summary/javascript/images/%E9%87%8D%E5%86%99%E5%8E%9F%E5%9E%8B%E5%AF%B9%E8%B1%A1.jpg)
 
 - 在已经创建了实例的情况下重写原型，会切断现有实例与新原型之间的联系
 - 重写原型对象，会导致原型对象的 `constructor` 属性指向 `Object` ，导致原型链关系混乱，所以我们应该在重写原型对象的时候指定 `constructor`( `instanceof` 仍然会返回正确的值)
