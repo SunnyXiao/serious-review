@@ -10,6 +10,11 @@ export default function isType(value, type) {
 }
 
 
+/**
+ * 返回具体类型兼容写法
+ * @param {*} value 
+ * @param {是否为严格模式} strict 
+ */
 export default function allType(value, strict = false) {
   strict = !!strict
 
