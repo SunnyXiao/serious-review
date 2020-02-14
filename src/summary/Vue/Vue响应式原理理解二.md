@@ -145,10 +145,23 @@ eg： 用proxy做类型验证
 		})
 	}
 
+#### Proxy 与 Object.defineProperty 优劣对比
+##### Proxy 优势：
+* 可以直接监听对象而非属性；
+* 可以直接监听数组的变化；
+* Proxy 返回的是一个新对象,我们可以只操作新的对象达到目的,而 Object.defineProperty 只能遍历对象属性直接修改；
+* Proxy 有多达 13 种拦截方法,不限于 apply、ownKeys、deleteProperty、has 等等是 Object.defineProperty 不具备的；
 
+##### Object.defineProperty 的优势如下:
+
+兼容性好，支持 IE9，而 Proxy 的存在浏览器兼容性问题,而且无法用 polyfill 磨平，因此 Vue 的作者才声明需要等到下个大版本( 3.0 )才能用 Proxy 重写。
 
 ### Diff算法和virtual dom
 - virtual dom： 
+	diff 算法 — 比较两棵虚拟 DOM 树的差异；
+
+	pach 算法 — 将两个虚拟 DOM 对象的差异应用到真正的 DOM 树。
+
 - render出 AST语法树：
 
 	源码流程：<code> $mount()->compileToFunctions()->compile()->baseCompile() </code>,真正的编译过程都是在这个baseCompile()里面执行，执行步骤可以分为三个过程
@@ -165,24 +178,7 @@ eg： 用proxy做类型验证
 	
 	   	<code>const code = generate(ast, options)</code>
 
-#### virtual DOM和真实DOM的区别？
-virtual DOM是将真实的DOM的数据抽取出来，以对象的形式模拟树形结构。比如dom是这样的：
 
-	<div>
-	    <p>123</p>
-	</div>
-
-对应的virtual DOM（伪代码）：
-
-	var Vnode = {
-	    tag: 'div',
-	    children: [
-	        { tag: 'p', text: '123' }
-	    ]
-	};
-
-
-Vue通过数据绑定来修改视图，当某个数据被修改的时候，set方法会让闭包中的Dep调用notify通知所有订阅者Watcher，Watcher通过get方法执行vm._update(vm._render(), hydrating)。
 
 ### Vue指令编写
 

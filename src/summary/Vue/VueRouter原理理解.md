@@ -18,6 +18,13 @@ url改变 =》 触发监听事件 =》 改变vue-router里的current变量 =》 
 - location.pathname
 - 可以用onpopstate监听history的变化
 
+pushState 和 repalceState 两个 API 来操作实现 URL 的变化 ；
+history.pushState() 或 history.replaceState() 不会触发 popstate 事件，这时我们需要手动触发页面跳转（渲染）。
+
+	window.history.pushState(null, null, path);
+	window.history.replaceState(null, null, path);
+
+
 ### vue插件编写
 #### vue.use 用法
 vue.use(element)

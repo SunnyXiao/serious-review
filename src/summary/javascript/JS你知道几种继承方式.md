@@ -72,7 +72,7 @@ function Student() {
 }
 var s = new Student
 ```
-此时在控制台中查看S里是这样的
+此时在控制台中查看JS里是这样的
 
 ```
 {
