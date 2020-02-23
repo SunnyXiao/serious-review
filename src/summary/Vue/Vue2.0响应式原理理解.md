@@ -1,3 +1,18 @@
+[实现MVVM都要掌握哪些](#实现mvvm都要掌握哪些) 
+
+[Vue的组件为什么必须是函数，而不能直接把一个对象赋值给它](#vue的组件为什么必须是函数而不能直接把一个对象赋值给它) 
+
+[响应式原理](#响应式原理) [MVVM构建](#mvvm构建) 
+
+[模板编译](#模板编译) [Observer数据劫持](#observer数据劫持) 
+
+[Watcher实现](#watcher实现) 
+
+[Dep　发布订阅](#dep　发布订阅) 
+
+[总结](#总结) [参考](#参考)
+
+<a id="markdown-实现mvvm都要掌握哪些" name="实现mvvm都要掌握哪些"></a>
 ### 实现MVVM都要掌握哪些
 - 模板编译(Compile)
 - 数据劫持(Observer)
@@ -6,6 +21,7 @@
 
 > MVVM模式就要将这些板块进行整合,实现模板和数据的绑定！
 
+<a id="markdown-vue的组件为什么必须是函数而不能直接把一个对象赋值给它" name="vue的组件为什么必须是函数而不能直接把一个对象赋值给它"></a>
 ### Vue的组件为什么必须是函数，而不能直接把一个对象赋值给它
 个人理解：
 
@@ -23,6 +39,7 @@
 - Object是引用数据类型,如果不用function 返回,每个实例的data 都是内存的同一个地址,一个数据改变了其他也改变了
 
 
+<a id="markdown-响应式原理" name="响应式原理"></a>
 ### 响应式原理
 
 当你把一个普通的 JavaScript 对象传入 Vue 实例作为 data 选项，Vue 将遍历此对象所有的属性，并使用`Object.defineProperty`把这些属性全部转为 `getter/setter`.
@@ -30,6 +47,7 @@
 每个组件实例都有相应的watcher实例对象，他会在组件渲染的过程中把属性记录为依赖，之后当依赖项的`setter`被调用时，会通知`watcher`重新计算，从而使他关联的组件得以更新。
 ![images](https://cn.vuejs.org/images/data.png)
 
+<a id="markdown-mvvm构建" name="mvvm构建"></a>
 ### MVVM构建
 
     class MVVM {
@@ -45,6 +63,7 @@
 		}
     }
 
+<a id="markdown-模板编译" name="模板编译"></a>
 ### 模板编译
 MVVM中调用了Compile类来编译我们的页面,开始来实现模板编译
 
@@ -204,6 +223,7 @@ MVVM中调用了Compile类来编译我们的页面,开始来实现模板编译
 
 
 
+<a id="markdown-observer数据劫持" name="observer数据劫持"></a>
 ### Observer数据劫持
 
 Object.defineProperty有劫持功能咱就看看这个是怎样劫持的
@@ -289,6 +309,7 @@ Object.defineProperty有劫持功能咱就看看这个是怎样劫持的
 
 > Observer的构造方法中将会调用observe方法遍历检测每一个属性，如果该属性不是对象则返回，否则调用defineReactive方法拦截每一个属性的get, set方法，defineReactTive也新建一个依赖收集器Dep
 
+<a id="markdown-watcher实现" name="watcher实现"></a>
 ### Watcher实现 ###
 
 观察者的目的就是给需要变化的那个元素增加一个观察者，用新值和老值进行比对,如果数据变化就执行对应的方法
@@ -328,6 +349,7 @@ Object.defineProperty有劫持功能咱就看看这个是怎样劫持的
 
 
 
+<a id="markdown-dep　发布订阅" name="dep　发布订阅"></a>
 ### Dep　发布订阅 ###
 
 如何将视图和数据关联起来呢?就是将每个数据和对应的watcher关联起来。当数据变化时让对应的watcher执行update方法即可！再想想在哪做操作呢？就是我们的set和get!
@@ -347,6 +369,7 @@ Object.defineProperty有劫持功能咱就看看这个是怎样劫持的
 	}
 
 
+<a id="markdown-总结" name="总结"></a>
 ### 总结 ###
 
 - vue就是通过以上的几个类实现了完整的MVVM模式，不同的是vue拥有更加完整的CpmpileUtil方法，针对每一个指令以及一些绑定添加特殊的updateFn方法。vue也使用了virtualDOM统一管理了对于DOM的操作；
@@ -355,6 +378,7 @@ Object.defineProperty有劫持功能咱就看看这个是怎样劫持的
 
 
 
+<a id="markdown-参考" name="参考"></a>
 ### 参考
 [关于MVVM的文章](https://juejin.im/post/5af8eb55f265da0b814ba766)
 

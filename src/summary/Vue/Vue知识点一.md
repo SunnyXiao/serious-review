@@ -21,11 +21,11 @@
 
 [11. vue项目进行哪些优化？](#11-vue项目进行哪些优化)
 
-[一、代码层面的优化](#一代码层面的优化)
+  [1、代码层面的优化](#1代码层面的优化)
 
-[二、Webpack 层面的优化](#二webpack-层面的优化)
+  [2、Webpack 层面的优化](#2webpack-层面的优化)
 
-[三、基础的 Web 技术的优化](#三基础的-web-技术的优化)
+  [3、基础的 Web 技术的优化](#3基础的-web-技术的优化)
 
 
 <a id="markdown-1sap的优缺点" name="1sap的优缺点"></a>
@@ -161,8 +161,8 @@ key是vnode的唯一标记，通过key，diff操作可以更准确、快速，�
 <a id="markdown-11-vue项目进行哪些优化" name="11-vue项目进行哪些优化"></a>
 ### 11. vue项目进行哪些优化？
 
-<a id="markdown-一代码层面的优化" name="一代码层面的优化"></a>
-#### 一、代码层面的优化
+<a id="markdown-1代码层面的优化" name="一代码层面的优化"></a>
+#### 1、代码层面的优化
 
 * v-if 和 v-show 区分使用场景
 * computed 和 watch  区分使用场景
@@ -175,8 +175,8 @@ key是vnode的唯一标记，通过key，diff操作可以更准确、快速，�
 * 优化无限列表性能 （可以参考开源项目[vue-virtual-scroller](https://github.com/Akryum/vue-virtual-scroller)）
 * 服务端渲染 SSR or 预渲染
 
-<a id="markdown-二webpack-层面的优化" name="二webpack-层面的优化"></a>
-#### 二、Webpack 层面的优化
+<a id="markdown-2webpack-层面的优化" name="二webpack-层面的优化"></a>
+#### 2、Webpack 层面的优化
 
 * Webpack 对图片进行压缩
 * 减少 ES6 转为 ES5 的冗余代码（解决方法： 安装babel-plugin-transform-runtime，在.babelrc 配置文件配置plugins）
@@ -185,8 +185,8 @@ key是vnode的唯一标记，通过key，diff操作可以更准确、快速，�
 * 构建结果输出分析（webpack-bundle-analyzer）
 * 优化SourceMap（开发环境推荐： cheap-module-eval-source-map）
 
-<a id="markdown-三基础的-web-技术的优化" name="三基础的-web-技术的优化"></a>
-#### 三、基础的 Web 技术的优化
+<a id="markdown-3基础的-web-技术的优化" name="三基础的-web-技术的优化"></a>
+#### 3、基础的 Web 技术的优化
 
 * 开启gzip压缩
 * 浏览器缓存

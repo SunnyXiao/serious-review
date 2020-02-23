@@ -1,3 +1,17 @@
+
+ [前言](#前言) 
+ 
+ [父组件向子组件通信](#父组件向子组件通信) 
+ 
+ [子组件向父组件通信](#子组件向父组件通信) 
+ 
+ [跨级组件通信](#跨级组件通信) 
+ 
+ [非嵌套组件通信](#非嵌套组件通信) 
+ 
+ [后记](#后记)
+
+<a id="markdown-前言" name="前言"></a>
 ### 前言
 
 前面几篇文章介绍了 `React` 中的基础知识点，这篇文章将还是通过实例的方式记录一下 `React` 中组件之间的通信方式
@@ -13,6 +27,7 @@
 - 跨级组件通信
 - 非嵌套组件通信
 
+<a id="markdown-父组件向子组件通信" name="父组件向子组件通信"></a>
 ### 父组件向子组件通信
 
 `React` 中采用数据单向流动的方式，父组件向子组件传递数据也是很常见的情况，父组件通过 `props` 向子组件传递数据
@@ -38,6 +53,7 @@ function Child(props) {
 }
 ```
 
+<a id="markdown-子组件向父组件通信" name="子组件向父组件通信"></a>
 ### 子组件向父组件通信
 
 利用自定义事件，触发回调
@@ -88,6 +104,7 @@ class Child extends React.Component {
 }
 ```
 
+<a id="markdown-跨级组件通信" name="跨级组件通信"></a>
 ### 跨级组件通信
 
 - 一层一层传递 `props`
@@ -141,6 +158,7 @@ class LastComponent extends React.Component {
 
 更多参考 [Context API](https://zh-hans.reactjs.org/docs/context.html#api)
 
+<a id="markdown-非嵌套组件通信" name="非嵌套组件通信"></a>
 ### 非嵌套组件通信
 
 非嵌套组件通信的思路一般有以下几种：
@@ -221,6 +239,7 @@ class ComponentB extends React.Component {
 
 ```
 
+<a id="markdown-后记" name="后记"></a>
 ### 后记
 当然，对于一些比较复杂的组件通信来说，我们也可以选择使用状态管理工具，比如 mobx 、redux 等，使我们的组件通信更加容易、更好管理
 
