@@ -25,7 +25,7 @@ Web UI中DOM节点跨层级的移动操作特别少，可以忽略不计。
 
 对于同一层级的一组子节点，通过唯一id区分。
 
-[!image](https://raw.githubusercontent.com/SunnyXiao/serious-review/master/src/summary/React/imgs/react-diff.png)
+![images](https://raw.githubusercontent.com/SunnyXiao/serious-review/master/src/summary/React/imgs/react-diff.png)
 
 <h4>tree diff</h4>
 
