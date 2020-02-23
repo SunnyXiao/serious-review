@@ -1,18 +1,33 @@
 
 [1.SAP的优缺点](#1sap的优缺点)
+
 [2. vue 的父组件和子组件生命周期钩子函数执行顺序？](#2-vue-的父组件和子组件生命周期钩子函数执行顺序)
+
 [3. Vue各阶段数据可使用情况：created，computed，data，prop，mounted，methods，watch](#3-vue各阶段数据可使用情况createdcomputeddatapropmountedmethodswatch)
+
 [4. 父组件如何监听到子组件的生命周期？](#4-父组件如何监听到子组件的生命周期)
- [5. 为什么vue组件中data是一个函数，然后return一个对象，而new Vue实例中，data可以是一个对象？](#5-为什么vue组件中data是一个函数然后return一个对象而new-vue实例中data可以是一个对象)
+
+[5. 为什么vue组件中data是一个函数，然后return一个对象，而new Vue实例中，data可以是一个对象？](#5-为什么vue组件中data是一个函数然后return一个对象而new-vue实例中data可以是一个对象)
+
 [6. vue 组件间通信有哪几种方式？](#6-vue-组件间通信有哪几种方式)
+
 [7. vuex使用](#7-vuex使用)
+
 [8. vue-router 路由模式有几种？](#8-vue-router-路由模式有几种)
+
 [9. vue 怎么用 vm.$set() 解决对象新增属性不能响应的问题 ？](#9-vue-怎么用-vmset-解决对象新增属性不能响应的问题-)
+
 [10. vue中 key的作用？](#10-vue中-key的作用)
+
 [11. vue项目进行哪些优化？](#11-vue项目进行哪些优化)
+
 [一、代码层面的优化](#一代码层面的优化)
+
 [二、Webpack 层面的优化](#二webpack-层面的优化)
+
 [三、基础的 Web 技术的优化](#三基础的-web-技术的优化)
+
+
 <a id="markdown-1sap的优缺点" name="1sap的优缺点"></a>
 ### 1.SAP的优缺点
 
