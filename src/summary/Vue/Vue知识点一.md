@@ -27,6 +27,11 @@
 
   [3、基础的 Web 技术的优化](#3基础的-web-技术的优化)
 
+[12. vuex如何区分state是外部直接修改还是通过mutation方法修改的？](#12-vuex如何区分state是外部直接修改还是通过mutation方法修改的)
+
+[13. vue-router 有哪几种导航钩子？](#13-vue-router-有哪几种导航钩子)
+
+[14. vue的nextTick 与setTimeout区别？](#14-vue的nexttick-与settimeout区别)
 
 <a id="markdown-1sap的优缺点" name="1sap的优缺点"></a>
 ### 1.SAP的优缺点
@@ -41,6 +46,7 @@
 
 - 首次加载耗时多；
 - 前进后退路由管理，不能使用浏览器的前进后退功能，所有页面切换需要自己建立堆栈管理；
+
 
 <a id="markdown-2-vue-的父组件和子组件生命周期钩子函数执行顺序" name="2-vue-的父组件和子组件生命周期钩子函数执行顺序"></a>
 ### 2. vue 的父组件和子组件生命周期钩子函数执行顺序？
@@ -77,6 +83,7 @@ watch不会再创建阶段自动执行，除了添加立即执行这个配置项
 
 加载顺序： prop -> methods -> data -> computed (加载时间是： beforeCreate 与 created之间)
 
+
 <a id="markdown-4-父组件如何监听到子组件的生命周期" name="4-父组件如何监听到子组件的生命周期"></a>
 ### 4. 父组件如何监听到子组件的生命周期？
 
@@ -99,10 +106,12 @@ watch不会再创建阶段自动执行，除了添加立即执行这个配置项
 
   @hook可以监听其他的生命周期事件，如：created、updated.....
 
+
 <a id="markdown-5-为什么vue组件中data是一个函数然后return一个对象而new-vue实例中data可以是一个对象" name="5-为什么vue组件中data是一个函数然后return一个对象而new-vue实例中data可以是一个对象"></a>
 ### 5. 为什么vue组件中data是一个函数，然后return一个对象，而new Vue实例中，data可以是一个对象？
 
 组件是用来复用的，如果组件中的data是一个对象，子组件中的data属性值会相互影响。
+
 
 <a id="markdown-6-vue-组件间通信有哪几种方式" name="6-vue-组件间通信有哪几种方式"></a>
 ### 6. vue 组件间通信有哪几种方式？
@@ -112,6 +121,7 @@ watch不会再创建阶段自动执行，除了添加立即执行这个配置项
 * $attrs/$listeners 适用于 隔代组件通信
 * provide / inject 适用于 隔代组件通信
 * vuex 适用于 父子、隔代、兄弟组件通信
+
 
 
 <a id="markdown-7-vuex使用" name="7-vuex使用"></a>
@@ -129,6 +139,7 @@ vuex主要包括以下几个模块
 * Mutation： 是唯一更改 store 中状态的方法，且必须是同步函数。
 * Action：用于提交 mutation，而不是直接变更状态，可以包含任意异步操作。
 * Module：允许将单一的 Store 拆分为多个 store 且同时保存在单一的状态树中。
+
 
 <a id="markdown-8-vue-router-路由模式有几种" name="8-vue-router-路由模式有几种"></a>
 ### 8. vue-router 路由模式有几种？
@@ -153,15 +164,18 @@ vm.$set 的实现原理是：
 * 数组： 通过直接使用数组的splice方法触发响应式；
 * 对象： 会先判读属性是否存在、对象是否是响应式，最终如果要对属性进行响应式处理，则是通过调用 defineReactive 方法进行响应式处理
 
+
 <a id="markdown-10-vue中-key的作用" name="10-vue中-key的作用"></a>
 ### 10. vue中 key的作用？
 
 key是vnode的唯一标记，通过key，diff操作可以更准确、快速，因为带 key 就不是就地复用了，在 sameNode 函数 a.key === b.key 对比中可以避免就地复用的情况。所以会更加准确。
 
+
 <a id="markdown-11-vue项目进行哪些优化" name="11-vue项目进行哪些优化"></a>
 ### 11. vue项目进行哪些优化？
 
-<a id="markdown-1代码层面的优化" name="一代码层面的优化"></a>
+
+<a id="markdown-1代码层面的优化" name="1代码层面的优化"></a>
 #### 1、代码层面的优化
 
 * v-if 和 v-show 区分使用场景
@@ -175,7 +189,8 @@ key是vnode的唯一标记，通过key，diff操作可以更准确、快速，�
 * 优化无限列表性能 （可以参考开源项目[vue-virtual-scroller](https://github.com/Akryum/vue-virtual-scroller)）
 * 服务端渲染 SSR or 预渲染
 
-<a id="markdown-2webpack-层面的优化" name="二webpack-层面的优化"></a>
+
+<a id="markdown-2webpack-层面的优化" name="2webpack-层面的优化"></a>
 #### 2、Webpack 层面的优化
 
 * Webpack 对图片进行压缩
@@ -185,10 +200,75 @@ key是vnode的唯一标记，通过key，diff操作可以更准确、快速，�
 * 构建结果输出分析（webpack-bundle-analyzer）
 * 优化SourceMap（开发环境推荐： cheap-module-eval-source-map）
 
-<a id="markdown-3基础的-web-技术的优化" name="三基础的-web-技术的优化"></a>
+
+<a id="markdown-3基础的-web-技术的优化" name="3基础的-web-技术的优化"></a>
 #### 3、基础的 Web 技术的优化
 
 * 开启gzip压缩
 * 浏览器缓存
 * CDN的使用
 * 使用 Chrome Performance 查找性能瓶颈
+
+<a id="markdown-12-vuex如何区分state是外部直接修改还是通过mutation方法修改的" name="12-vuex如何区分state是外部直接修改还是通过mutation方法修改的"></a>
+### 12. vuex如何区分state是外部直接修改还是通过mutation方法修改的？
+
+vuex修改state的唯一渠道就是执行commit('xx',payload)方法，其底层是通过执行this._withCommit(fn)设置_committing标志变量为true，然后才能修改state，修改完毕再还原_committing，所以只要 watch 一下 state，state change 时判断是否_committing 值为 true，即可判断修改的合法性。
+
+<a id="markdown-13-vue-router-有哪几种导航钩子" name="13-vue-router-有哪几种导航钩子"></a>
+### 13. vue-router 有哪几种导航钩子？
+
+- 全局导航钩子：beforeEach()、afterEach()
+- 路由独享组件：beforeEnter() 
+- 组件内的钩子：beforeRouteEnter()、beforeRouteUpdate()、beforeRouteLeave()
+
+
+<a id="markdown-14-vue的nextTick 与setTimeout区别？" name="14-vue的nextTick 与setTimeout区别？"></a>
+### 14. vue的nextTick 与setTimeout区别？
+
+在vue源码中实行nextTick有4中方法：
+- Promise.then
+- MutationObserver
+- setImmediate
+- setTimeout
+
+
+    let timerFunc
+    if (typeof Promise !== 'undefined' && isNative(Promise)) {
+      const p = Promise.resolve()
+      timerFunc = () => {
+        p.then(flushCallbacks)
+        if (isIOS) setTimeout(noop)
+      }
+      isUsingMicroTask = true
+    } else if (!isIE && typeof MutationObserver !== 'undefined' && (
+      isNative(MutationObserver) ||
+      // PhantomJS and iOS 7.x
+      MutationObserver.toString() === '[object MutationObserverConstructor]'
+    )) {
+      // Use MutationObserver where native Promise is not available,
+      // e.g. PhantomJS, iOS7, Android 4.4
+      // (#6466 MutationObserver is unreliable in IE11)
+      let counter = 1
+      const observer = new MutationObserver(flushCallbacks)
+      const textNode = document.createTextNode(String(counter))
+      observer.observe(textNode, {
+        characterData: true
+      })
+      timerFunc = () => {
+        counter = (counter + 1) % 2
+        textNode.data = String(counter)
+      }
+      isUsingMicroTask = true
+    }else if (typeof setImmediate !== 'undefined' && isNative(setImmediate)) {
+      // Fallback to setImmediate.
+      // Technically it leverages the (macro) task queue,
+      // but it is still a better choice than setTimeout.
+      timerFunc = () => {
+        setImmediate(flushCallbacks)
+      }
+    } else {
+      // Fallback to setTimeout.
+      timerFunc = () => {
+        setTimeout(flushCallbacks, 0)
+      }
+    }
