@@ -1,4 +1,15 @@
-async 起什么作用
+
+ [async 起什么作用](#async-起什么作用)
+ 
+  [await 到底在等啥](#await-到底在等啥)
+ 
+  [async/await](#asyncawait)
+	
+	[简单的比较](#简单的比较)
+ 
+  [async/await 的优势在于处理 then 链](#asyncawait-的优势在于处理-then-链)
+<a id="markdown-async-起什么作用" name="async-起什么作用"></a>
+### async 起什么作用
 ------
 
 首先写段代码来试试，看看返回什么？
@@ -19,7 +30,8 @@ async 起什么作用
 
 联想一下 Promise 的特点——无等待，所以在没有 await 的情况下执行 async 函数，它会立即执行，返回一个 Promise 对象，并且，绝不会阻塞后面的语句。这和普通返回 Promise 对象的函数并无二致。
 
-await 到底在等啥
+<a id="markdown-await-到底在等啥" name="await-到底在等啥"></a>
+### await 到底在等啥
 --------
 
 await 可以用于等待一个 async 函数的返回值. await 不仅仅用于等 Promise 对象，它可以等任意表达式的结果,eg:
@@ -46,9 +58,11 @@ await 表达式的运算结果取决于它等的东西。
 > 看到上面的阻塞一词，心慌了吧……放心，这就是 await 必须用在 async 函数中的原因。async 函数调用不会造成阻塞，它内部所有的阻塞都被封装在一个 Promise 对象中异步执行。
 
 
-async/await 
+<a id="markdown-asyncawait" name="asyncawait"></a>
+### async/await 
 -----
 
+<a id="markdown-简单的比较" name="简单的比较"></a>
 #### 简单的比较
 
 用 setTimeout 模拟耗时的异步操作，先来看看不用 async/await 会怎么写
@@ -86,7 +100,8 @@ async/await
 又一个疑问产生了，这两段代码，两种方式对异步调用的处理（实际就是对 Promise 对象的处理）差别并不明显，甚至使用 async/await 还需要多写一些代码，那它的优势到底在哪？
 
 
-async/await 的优势在于处理 then 链
+<a id="markdown-asyncawait-的优势在于处理-then-链" name="asyncawait-的优势在于处理-then-链"></a>
+### async/await 的优势在于处理 then 链
 -------
 
 单一的Promise链并不能发现async/await的优势， 但是，如果需要处理由多个Promise组成的then链的时候，优势就能体现出来了
