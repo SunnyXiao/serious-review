@@ -124,25 +124,29 @@ Generator的用法， */yield 和 async/await看起来很相似。他们都提�
 ```
 如何实现async的自动执行器呢？
 
-function spawn(fenF){
-	return new Promise((resolve, reject)=>{
-		const gen = genF();
-		function step(nextF){
-			let next;
-			try {
-				next = nextF()
-			} catch (e){
-				return reject(e);
+```
+
+	function spawn(fenF){
+		return new Promise((resolve, reject)=>{
+			const gen = genF();
+			function step(nextF){
+				let next;
+				try {
+					next = nextF()
+				} catch (e){
+					return reject(e);
+				}
+				if(next.done){
+					return resove(next.value)
+				}
+				Promise.resolve(next.value).then(function(v) {
+			        step(function() { return gen.next(v); });
+			      }, function(e) {
+			        step(function() { return gen.throw(e); });
+			    });
 			}
-			if(next.done){
-				return resove(next.value)
-			}
-			Promise.resolve(next.value).then(function(v) {
-		        step(function() { return gen.next(v); });
-		      }, function(e) {
-		        step(function() { return gen.throw(e); });
-		    });
-		}
-		step(function(){return gen.next(undefined);})
-	})
-}
+			step(function(){return gen.next(undefined);})
+		})
+	}
+
+```
