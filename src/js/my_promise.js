@@ -1,9 +1,9 @@
 /*
  * @Author: your name
  * @Date: 2020-03-29 15:48:48
- * @LastEditTime: 2020-03-29 18:32:28
+ * @LastEditTime: 2020-04-02 15:26:55
  * @LastEditors: Please set LastEditors
- * @Description: In User Settings Edit
+ * @Description:来源：https://juejin.im/post/5e3b9ae26fb9a07ca714a5cc
  * @FilePath: /school-online/work/xly/project/serious-review/src/js/my_promise.js
  */
 
@@ -14,6 +14,54 @@ const PENDING = 'PENDING'
 const FULFILLED = 'FULFILLED'
 const REJECTED = 'REJECTED'
 class MyPromise {
+  // MyPromise.resolve('dd')
+  static resolve(value) {
+    // 根据规范, 如果参数是Promise实例, 直接return这个实例
+    if (value instanceof MyPromise) return value
+    return new MyPromise(resolve => resolve(value))
+  }
+
+  //静态的reject方法
+  static reject(reason) {
+    return new MyPromise((resolve, reject) => reject(reason))
+  }
+
+  //静态的all方法
+  static all(promiseArr) {
+    let index = 0;
+    let result = []
+    return new MyPromise((resolve, reject) => {
+      promiseArr.forEach((element, _index) => {
+        MyPromise.resolve(element).then(val => {
+          index++;
+          result[_index] = val;
+          if (index === promiseArr.length) {
+            resolve(result)
+          }
+        }, error => {
+          reject(err)
+        })
+      });
+    })
+  }
+
+  //静态的race方法
+  static race(promiseArr) {
+    return new MyPromise((resolve, reject) => {
+      //同时执行Promise,如果有一个Promise的状态发生改变,就变更新MyPromise的状态
+      for (let p of promiseArr) {
+        MyPromise.resolve(p).then( //Promise.resolve(p)用于处理传入值不为Promise的情况
+          value => {
+            resolve(value) //注意这个resolve是上边new MyPromise的
+          },
+          err => {
+            reject(err)
+          }
+        )
+      }
+    })
+  }
+
   constructor(executor) {
     this._status = PENDING;
     this._value = undefined;
@@ -56,6 +104,7 @@ class MyPromise {
     }
 
   }
+
   // then链式调用
   then(resolveFn, rejectFn) {
     console.log('then');
@@ -106,6 +155,12 @@ class MyPromise {
       }
     })
   }
+
+  //catch方法其实就是执行一下then的第二个回调
+  catch (rejectFn) {
+    return this.then(undefined, rejectFn)
+  }
+
 }
 
 const p1 = new MyPromise((resolve, reject) => {
