@@ -47,7 +47,17 @@
 
 	(macro)task->渲染->(macro)task->...
 
-(macro)task主要包含：script(整体代码)、setTimeout、setInterval、I/O、UI交互事件、postMessage、MessageChannel、setImmediate(Node.js 环境
+(macro)task主要包含：
+
+- script(整体代码)、
+- setTimeout、
+- setInterval、
+- I/O、
+- UI交互事件、
+- requestAnimationFrame、
+- postMessage、
+- MessageChannel、
+- setImmediate(Node.js 环境）
 
 
 微任务
@@ -57,7 +67,15 @@ microtask（又称为微任务），可以理解是在当前 task 执行结束�
 
 所以它的响应速度相比setTimeout（setTimeout是task）会更快，因为无需等渲染。也就是说，在某一个macrotask执行完后，就会将在它执行期间产生的所有microtask都执行完毕（在渲染前）。
 
-microtask主要包含：Promise.then、MutaionObserver、process.nextTick(Node.js 环境)
+microtask主要包含：
+
+- Promise.then、
+- MutaionObserver、
+- Object.observe
+- process.nextTick(Node.js 环境)
+
+
+**一个 event loop 中只有一个 微任务队列，但是可以有多个 宏任务队列**
 
 
 运行机制
