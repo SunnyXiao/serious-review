@@ -1,7 +1,7 @@
 <!--
  * @Author:luisa xiao
  * @Date: 2020-02-14 23:15:01
- * @LastEditTime: 2020-03-16 18:38:57
+ * @LastEditTime: 2020-04-07 11:15:06
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /serious-review/src/summary/Vue/vue-diff-virtual-dom.md
@@ -109,7 +109,6 @@ diff算法是通过同层的树节点进行比较而非对树进行逐层搜索�
 	      createElm(vnode, insertedVnodeQueue, parentElm, refElm)
 	    } else {
 	      /*标记旧的VNode是否有nodeType*/
-	      /*Github:https://github.com/answershuto*/
 	      const isRealElement = isDef(oldVnode.nodeType)
 	      if (!isRealElement && sameVnode(oldVnode, vnode)) {
 	        // patch existing root node
