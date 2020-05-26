@@ -4,18 +4,18 @@
 
 > 主要有value、get、set、writable、enumerable、configurable(false时，不可以被删除)几个属性；
     
-	var obj1={a: 1,b: 2}
-	console.log(Object.getOwnPropertyDescriptor(obj1,'a'))
-	// 输出： {value: 1, writable: true, enumerable: true, configurable: true}
+  var obj1={a: 1,b: 2}
+  console.log(Object.getOwnPropertyDescriptor(obj1,'a'))
+  // 输出： {value: 1, writable: true, enumerable: true, configurable: true}
 
 - Object.freeze()
 > 可以浅冻结一个对象。一个被冻结的对象再也不能被修改；冻结了一个对象则不能向这个对象添加新的属性，不能删除已有属性，不能修改该对象已有属性的可枚举性、可配置性、可写性，以及不能修改已有属性的值。此外，冻结一个对象后该对象的原型也不能被修改
 
         Object.freeze(obj1)
-    	console.log(Object.getOwnPropertyDescriptor(obj1,'a'))
+      console.log(Object.getOwnPropertyDescriptor(obj1,'a'))
     
-    	// 输出： {value: 1, writable: true, enumerable: true, configurable: true}
-	
+      // 输出： {value: 1, writable: true, enumerable: true, configurable: true}
+  
 
 ### 什么是Proxy？
 
@@ -45,68 +45,68 @@
 
 举一个例子：
 
-	const originalPush = arrayMethods.push;
-	Object.defineProperty(arrayMethods, 'push', {
-	    configurable: true,
-	    enumerable: false,
-	    writable: true,
-	    value(...args) {
-	        const result = originalPush.apply(this, args);
-	        console.log('对数组进行了push操作，加入了值：', args);
-	        return result;
-	    }
-	})
-	data.arr.__proto__ = arrayMethods
-	data.arr.push([5, 6], 7) // 对数组进行了push操作，加入了值：[5, 6], 7
+  const originalPush = arrayMethods.push;
+  Object.defineProperty(arrayMethods, 'push', {
+      configurable: true,
+      enumerable: false,
+      writable: true,
+      value(...args) {
+          const result = originalPush.apply(this, args);
+          console.log('对数组进行了push操作，加入了值：', args);
+          return result;
+      }
+  })
+  data.arr.__proto__ = arrayMethods
+  data.arr.push([5, 6], 7) // 对数组进行了push操作，加入了值：[5, 6], 7
 
 源码：
 
-	/*
-	   * not type checking this file because flow doesn't play well with
-	   * dynamically accessing methods on Array prototype
-	   */
+  /*
+     * not type checking this file because flow doesn't play well with
+     * dynamically accessing methods on Array prototype
+     */
 
-	  var arrayProto = Array.prototype;
-	  var arrayMethods = Object.create(arrayProto);  // 形成：arrayMethods.__proto__ -> Array.prototype
-	
-	  var methodsToPatch = [
-	    'push',
-	    'pop',
-	    'shift',
-	    'unshift',
-	    'splice',
-	    'sort',
-	    'reverse'
-	  ];
+    var arrayProto = Array.prototype;
+    var arrayMethods = Object.create(arrayProto);  // 形成：arrayMethods.__proto__ -> Array.prototype
+  
+    var methodsToPatch = [
+      'push',
+      'pop',
+      'shift',
+      'unshift',
+      'splice',
+      'sort',
+      'reverse'
+    ];
 
-	  /**
-	   * Intercept mutating methods and emit events
-	   */
-	  methodsToPatch.forEach(function (method) {
-	    // cache original method
-	    var original = arrayProto[method];
-	    def(arrayMethods, method, function mutator () {
-	      var args = [], len = arguments.length;
-	      while ( len-- ) args[ len ] = arguments[ len ];
-	
-	      var result = original.apply(this, args);
-	      var ob = this.__ob__;
-	      var inserted;
-	      switch (method) {
-	        case 'push':
-	        case 'unshift':
-	          inserted = args;
-	          break
-	        case 'splice':
-	          inserted = args.slice(2);
-	          break
-	      }
-	      if (inserted) { ob.observeArray(inserted); }
-	      // notify change
-	      ob.dep.notify();
-	      return result
-	    });
-	  });
+    /**
+     * Intercept mutating methods and emit events
+     */
+    methodsToPatch.forEach(function (method) {
+      // cache original method
+      var original = arrayProto[method];
+      def(arrayMethods, method, function mutator () {
+        var args = [], len = arguments.length;
+        while ( len-- ) args[ len ] = arguments[ len ];
+  
+        var result = original.apply(this, args);
+        var ob = this.__ob__;
+        var inserted;
+        switch (method) {
+          case 'push':
+          case 'unshift':
+            inserted = args;
+            break
+          case 'splice':
+            inserted = args.slice(2);
+            break
+        }
+        if (inserted) { ob.observeArray(inserted); }
+        // notify change
+        ob.dep.notify();
+        return result
+      });
+    });
 
 
 
@@ -132,18 +132,18 @@ Vue3的响应式原理是用了proxy的方式来实现，优化了Vue2响应式�
 
 eg： 用proxy做类型验证
 
-	function person(name.age){
-		this.age = age
-		this.name = name
-		return new Proxy(this,{
-			get: function(target,key){
-				return target[key]
-			},
-			set: function(target,key,value){
-				validate(key,value)
-			}
-		})
-	}
+  function person(name.age){
+    this.age = age
+    this.name = name
+    return new Proxy(this,{
+      get: function(target,key){
+        return target[key]
+      },
+      set: function(target,key,value){
+        validate(key,value)
+      }
+    })
+  }
 
 #### Proxy 与 Object.defineProperty 优劣对比
 ##### Proxy 优势：
@@ -158,72 +158,72 @@ eg： 用proxy做类型验证
 
 ### Diff算法和virtual dom
 - virtual dom： 
-	diff 算法 — 比较两棵虚拟 DOM 树的差异；
+  diff 算法 — 比较两棵虚拟 DOM 树的差异；
 
-	pach 算法 — 将两个虚拟 DOM 对象的差异应用到真正的 DOM 树。
+  pach 算法 — 将两个虚拟 DOM 对象的差异应用到真正的 DOM 树。
 
 - render出 AST语法树：
 
-	源码流程：<code> $mount()->compileToFunctions()->compile()->baseCompile() </code>,真正的编译过程都是在这个baseCompile()里面执行，执行步骤可以分为三个过程
-	
-	1. 解析模版字符串生成AST
-	
-		<code>	const ast = parse(template.trim(), options) </code>
+  源码流程：<code> $mount()->compileToFunctions()->compile()->baseCompile() </code>,真正的编译过程都是在这个baseCompile()里面执行，执行步骤可以分为三个过程
+  
+  1. 解析模版字符串生成AST
+  
+    <code>	const ast = parse(template.trim(), options) </code>
 
-	2. 优化语法树
-	
-		<code>optimize(ast, options)</code>
+  2. 优化语法树
+  
+    <code>optimize(ast, options)</code>
 
-	3. 生成代码
-	
-	   	<code>const code = generate(ast, options)</code>
+  3. 生成代码
+  
+       <code>const code = generate(ast, options)</code>
 
 
 
 ### Vue指令编写
 
 ```
-	
-	
-	'use strict';
-	
-	import Vue from 'vue';
-	
-	//指令： v-input-end
-	//说明： 只适用于<input>。input 被点击时，光标自动移到最后一个字符
-	
-	let handler
-	Vue.directive('inputEnd', {
-	    bind: function (el, binding, vnode) {
-	
-	        handler = function (e) {
-	
-	            let obj = e.currentTarget;
-	
-	            obj.focus();
-	
-	            let len = obj.value.length;
-	
-	            if(document.selection) {
-	                let sel = obj.createTextRange();
-	                sel.moveStart('character', len);
-	                sel.collapse(true);
-	                sel.select();
-	            } else if(typeof(obj.selectionStart) == 'number' && typeof(obj.selectionEnd) == 'number') {
-	                obj.selectionStart = obj.selectionEnd = len;
-	                obj.scrollLeft = len * 8;
-	            }
-	
-	        }
-	
-	        setTimeout(()=>{
-	            if(el){
-	                el.addEventListener('click', handler);
-	            }
-	        },0)
-	    },
-	    unbind: function (el, binding) {
-	       el.removeEventListener('click', handler)
-	    }
-	})
+  
+  
+  'use strict';
+  
+  import Vue from 'vue';
+  
+  //指令： v-input-end
+  //说明： 只适用于<input>。input 被点击时，光标自动移到最后一个字符
+  
+  let handler
+  Vue.directive('inputEnd', {
+      bind: function (el, binding, vnode) {
+  
+          handler = function (e) {
+  
+              let obj = e.currentTarget;
+  
+              obj.focus();
+  
+              let len = obj.value.length;
+  
+              if(document.selection) {
+                  let sel = obj.createTextRange();
+                  sel.moveStart('character', len);
+                  sel.collapse(true);
+                  sel.select();
+              } else if(typeof(obj.selectionStart) == 'number' && typeof(obj.selectionEnd) == 'number') {
+                  obj.selectionStart = obj.selectionEnd = len;
+                  obj.scrollLeft = len * 8;
+              }
+  
+          }
+  
+          setTimeout(()=>{
+              if(el){
+                  el.addEventListener('click', handler);
+              }
+          },0)
+      },
+      unbind: function (el, binding) {
+         el.removeEventListener('click', handler)
+      }
+  })
 ```
