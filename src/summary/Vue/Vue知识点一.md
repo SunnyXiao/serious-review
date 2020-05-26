@@ -231,7 +231,7 @@ vuex修改state的唯一渠道就是执行commit('xx',payload)方法，其底层
 - setImmediate
 - setTimeout
 
-
+```
     let timerFunc
     if (typeof Promise !== 'undefined' && isNative(Promise)) {
       const p = Promise.resolve()
@@ -272,3 +272,4 @@ vuex修改state的唯一渠道就是执行commit('xx',payload)方法，其底层
         setTimeout(flushCallbacks, 0)
       }
     }
+  ```
