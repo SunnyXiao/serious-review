@@ -152,9 +152,17 @@ eg： 用proxy做类型验证
 * Proxy 返回的是一个新对象,我们可以只操作新的对象达到目的,而 Object.defineProperty 只能遍历对象属性直接修改；
 * Proxy 有多达 13 种拦截方法,不限于 apply、ownKeys、deleteProperty、has 等等是 Object.defineProperty 不具备的；
 
-##### Object.defineProperty 的优势如下:
+##### Object.defineProperty
 
-兼容性好，支持 IE9，而 Proxy 的存在浏览器兼容性问题,而且无法用 polyfill 磨平，因此 Vue 的作者才声明需要等到下个大版本( 3.0 )才能用 Proxy 重写。
+问题：
+
+1. 无法对原生数组进行更新
+
+2. 对象嵌套深，递归消耗部分性能
+
+3. 无法对新添加的属性进行监听
+
+优势： 兼容性好，支持 IE9，而 Proxy 的存在浏览器兼容性问题,而且无法用 polyfill 磨平，因此 Vue 的作者才声明需要等到下个大版本( 3.0 )才能用 Proxy 重写。
 
 ### Diff算法和virtual dom
 - virtual dom： 
