@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2020-03-29 15:48:48
- * @LastEditTime: 2020-04-02 15:26:55
+ * @LastEditTime: 2020-06-05 17:07:57
  * @LastEditors: Please set LastEditors
  * @Description:来源：https://juejin.im/post/5e3b9ae26fb9a07ca714a5cc
  * @FilePath: /school-online/work/xly/project/serious-review/src/js/my_promise.js
@@ -175,3 +175,39 @@ p1.then(res => {
   console.log(res);
   return 3
 })
+
+
+///如何通过Promise对象实现ajax？
+
+var myXhr = function (options) {
+  let promise = new Promise(function (resolve, reject) {
+    let {
+      url,
+      method,
+      async,
+      body
+    } = options
+
+    async = async ||true;
+    let xhr = new XMLHttpRequest();
+
+    xhr.open(method, url, async);
+    xhr.responseType = 'json';
+    xhr.setRequestHeader("Accept", "application/json")
+    xhr.send(body);
+
+    xhr.onreadystatechange = function () {
+      if (this.readyState != 4) {
+        return
+      }
+      if (this.status == 200) {
+        resolve(this.response)
+      } else {
+        reject(new Error(this.statusText))
+      }
+    }
+
+    xhr.abort
+
+  })
+}
